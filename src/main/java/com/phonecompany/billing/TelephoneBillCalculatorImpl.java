@@ -18,8 +18,6 @@ public class TelephoneBillCalculatorImpl implements TelephoneBillCalculator {
     private static final String SPLITTER = ",";
     //DateTime formatter for input
     private static final DateTimeFormatter TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-    //DateTime formatter for peak hours
-    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
     //Peak hour start
     private static final LocalTime START_INTERVAL_PEAK = LocalTime.parse("08:00:00");
     //Peak hour end
@@ -60,8 +58,6 @@ public class TelephoneBillCalculatorImpl implements TelephoneBillCalculator {
                 .callStart(LocalDateTime.parse(split[1].trim(), TIMESTAMP_FORMATTER))
                 .callEnd(LocalDateTime.parse(split[2].trim(), TIMESTAMP_FORMATTER))
                 .build();
-        //we could theoretically calculate the TelephoneNumberAnalytics per number during this cycle,
-        //but for the purpose of this task, this would make the code less comprehensible -> but if there was a performance need, I'd do it
     }
 
     private Long findPromoNumber(List<TelephoneCall> calls) {
